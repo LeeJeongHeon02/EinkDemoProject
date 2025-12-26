@@ -44,9 +44,10 @@ public abstract class BaseNFCActivity extends BaseActivity {
 //        startReaderMode();
         if (mNfcAdapter != null) {
             int flag = 0;
-//            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-//                flag = PendingIntent.FLAG_IMMUTABLE;
-//            }
+            // Android 12 (S) 이상일 때는 FLAG_MUTABLE을 필수적으로 넣어줘야 함 (NFC 태그 정보를 받기 위해)
+            if (Build.VERSION.SDK_INT >= 31) {
+                flag = PendingIntent.FLAG_MUTABLE;
+            }
             mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), flag);
         }
 

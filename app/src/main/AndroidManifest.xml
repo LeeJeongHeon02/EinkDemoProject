@@ -19,12 +19,12 @@
         android:name=".App"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/BaseAppTheme">
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+                android:name=".activity.MainActivity"
+                android:exported="true"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity android:name=".activity.CropImageActivity"/>
         <activity android:name=".activity.RefreshScreenActivity"
