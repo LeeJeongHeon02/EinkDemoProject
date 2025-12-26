@@ -1,0 +1,50 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.1.2"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+
+    ext{
+        versionName = getVersionName()
+        versionCode = getVersionCode()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+def  getVersionName() {
+    return "2.6"
+}
+def getVersionCode() {
+    String[] split = getVersionName().split("\\.");
+    String result = "";
+    for (int i = 0; i < split.length; i++) {
+        int parseInt = Integer.parseInt(split[i]);
+        String hex = Integer.toHexString(parseInt);
+        if (hex.length() != 2) {
+            hex = "0" + hex;
+        }
+        result = result + hex;
+    }
+    return Integer.parseInt(result, 16);
+}
